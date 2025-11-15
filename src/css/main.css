@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.3%;
+}
+body{
+    font-family: "Inter", sans-serif;
+    font-size: 1.6rem;
+    background-color: #060916;
+    color: #f1f3f5;
+    max-width: 100rem;
+    margin: auto;
+    padding: 3.2rem;
+}
+button{
+    font-family: inherit;
+    color: inherit;
+    border: 2px solid transparent;
+    outline: none;
+    border-radius: 14px;
+    cursor: pointer;
+}
+.header .logo-box{
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+}
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header .logo{
+    animation: InfiniteRotation 3.5s infinite;
+}
+.header .quiz-lifes{
+    font-size: 2rem;
+}
+.quiz, .remaining-time-box{
+    margin: 4rem auto;
+    max-width: 80%;
+}
+.pontuation-box{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.4rem;
+}
+
+.current-question-number{
+    border: 2px solid rgba(241, 243, 245, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: .8rem;
+}
+
+.score{
+    border: 2px solid rgba(241, 243, 245, 0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+}
+.score span{
+    padding: .8rem;
+    font-weight: 700;
+}
+.max-score{
+    background-color: #233783;
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.question{
+    border:2px solid #233783;
+    background-color: #233783;
+    padding: 3.6rem 1.4rem;
+    border-radius: 14px;
+}
+
+.answers{
+    margin-top: 2.4rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+}
+
+.answer button{
+    background-color: rgba(241, 243, 245, 0.1);
+    padding: 2rem;
+    width: 100%;
+    transition: all 400ms;
+}
+.answer button:hover{
+    border: 2px solid #c27809ab;
+}
+
+.remaining-time-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.4rem;
+}
+.remaining-time{
+    font-size: 2.4rem;
+}
+
+.next-btn{
+    background-color: #233783;
+    padding: 1.4rem 2.4rem;
+    border: 12px;
+    transition: all 500ms;
+}
+.next-btn:hover{
+    background-color: #14225c;
+}
+.correct{
+    border: 2px solid #5ad15a9c; 
+}
+
+.wrong{
+    border: 2px solid #be3333e3;
+}
+
+@keyframes InfiniteRotation {
+    0%{
+        transform: rotate(0);
+    }100%{
+        transform: rotate(360deg);
+    }
+}

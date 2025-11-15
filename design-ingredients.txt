@@ -1,0 +1,32 @@
+--- 01 TYPOGRAPHY SYSTEM
+
+    --FAMILY: INTER
+
+    -- Font sizes (px)
+    10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+    
+
+--- 02 COLORS
+    -- Primary: #060916
+        -Tints:
+        -Shades: 
+    --Greys:
+        -text: #f1f3f5
+        -normal 
+        lighter- 
+    --Accents: #233783
+        -lighter: 
+
+--- 05 SHADOWS: NO
+
+--- 06 BORDER: 
+
+--- 07 BORDER-RADIUS
+    --Default: 
+    --Smaller: 
+    --large: 
+
+    
+--Spacing system (px)
+    2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
