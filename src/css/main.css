@@ -95,10 +95,9 @@ button{
     background-color: rgba(241, 243, 245, 0.1);
     padding: 2rem;
     width: 100%;
-    transition: all 400ms;
 }
 .answer button:hover{
-    border: 2px solid #c27809ab;
+    background-color:  #c278091c;
 }
 
 .remaining-time-box{

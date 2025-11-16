@@ -2,14 +2,23 @@ import Header from "./components/Header"
 import Quiz from "./components/Quiz"
 import RemainingTime from "./components/RemainingTime"
 import { useState } from "react"
+
 function App() {
-  const [nextState, setNextState] = useState(false)
+  const [userAnswers, setUserAnswers] = useState([])
+  const currentQuestionIndex = userAnswers.length
+
+  function handleToggleNextState(answer){
+      setUserAnswers((prevUserAnswers) => {
+        return [...prevUserAnswers, answer]
+      })
+  }
+
 
   return (
     <>
       <Header/>
-      <Quiz/>
-      <RemainingTime showNextStepBtn={nextState}/>
+      <Quiz index={currentQuestionIndex} onNextQuestion={handleToggleNextState}/>
+      <RemainingTime onNextQuestion={handleToggleNextState} index={currentQuestionIndex}/>
     </>
   )
 }

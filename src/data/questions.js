@@ -2,7 +2,7 @@ export const QUESTIONS = [
   {
     id: 'q1',
     points: 10,
-    text: 'Which of the following definitions best describes React.js?',
+    question: 'Which of the following definitions best describes React.js?',
     answers: [
     {
         text: 'A library to build user interfaces with help of declarative code.',
@@ -24,7 +24,7 @@ export const QUESTIONS = [
   },
   {
     id: 'q2',
-    text: 'What purpose do React hooks serve?',
+    question: 'What purpose do React hooks serve?',
     points: 15,
     answers: [
         {
@@ -48,7 +48,7 @@ export const QUESTIONS = [
   {
     id: 'q3',
     points: 10,
-    text: 'Can you identify what JSX is?',
+    question: 'Can you identify what JSX is?',
     answers: [
         {
         text: 'A JavaScript extension that adds HTML-like syntax to JavaScript.',
@@ -71,7 +71,7 @@ export const QUESTIONS = [
   {
     id: 'q4',
     points: 10,
-    text: 'What is the most common way to create a component in React?',
+    question: 'What is the most common way to create a component in React?',
     answers: [
         {
         text: 'By defining a JavaScript function that returns a renderable value.',
@@ -93,7 +93,7 @@ export const QUESTIONS = [
   },
   {
     id: 'q5',
-    text: 'What does the term "React state" imply?',
+    question: 'What does the term "React state" imply?',
     points: 15,
     answers: [
         {
@@ -117,7 +117,7 @@ export const QUESTIONS = [
   {
     id: 'q6',
     points: 15,
-    text: 'How do you typically render list content in React apps?',
+    question: 'How do you typically render list content in React apps?',
     answers: [
         {
         text: 'By using the map() method to iterate over an array of data and returning JSX.',
@@ -140,7 +140,7 @@ export const QUESTIONS = [
   {
     id: 'q7',
     points: 10,
-    text: 'Which approach can NOT be used to render content conditionally?',
+    question: 'Which approach can NOT be used to render content conditionally?',
     answers: [
         {
         text: 'Using a the #if template syntax.',
