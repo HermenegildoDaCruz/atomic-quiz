@@ -1,18 +1,18 @@
 import Header from "./components/Header"
 import Quiz from "./components/Quiz"
 import RemainingTime from "./components/RemainingTime"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function App() {
   const [answersState, setAnswersState] = useState({
     userAnswers: [],
     userPoints: 0,
     maxErrors: 5, 
+    disableAnswers: false,
   })
   const currentQuestionIndex = answersState.userAnswers.length
 
   function handleToggleNextState(answer){
-
       setAnswersState((prevAnswersState) => {
         let updatedAnswersState = {...prevAnswersState, userAnswers: [...prevAnswersState.userAnswers, answer]}
         
@@ -27,14 +27,29 @@ function App() {
 
         return updatedAnswersState
       })
-
   }
+
+  function handleDisableAllAnswers(){
+    setAnswersState(prevAnswersState => {
+      const updatedAnswersState = {...prevAnswersState,disableAnswers: !prevAnswersState.disableAnswers}
+      return updatedAnswersState
+    })
+  }
+
+  useEffect(()=>{
+    if (answersState.disableAnswers){
+      setAnswersState(prevAnswersState => {
+        const updatedAnswersState = {...prevAnswersState, disableAnswers: !prevAnswersState.disableAnswers}
+        return updatedAnswersState
+      })
+    }
+  },[currentQuestionIndex])
 
 
   return (
     <>
       <Header ref = {answersState} remainingLives={answersState.maxErrors}/>
-      <Quiz index={currentQuestionIndex} onNextQuestion={handleToggleNextState} userPoints={answersState.userPoints}/>
+      <Quiz index={currentQuestionIndex} onNextQuestion={handleToggleNextState} userPoints={answersState.userPoints} disableAnswers = {answersState.disableAnswers} onDisable = {handleDisableAllAnswers}/>
       <RemainingTime onNextQuestion={handleToggleNextState} index={currentQuestionIndex}/>
     </>
   )

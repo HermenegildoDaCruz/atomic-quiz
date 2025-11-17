@@ -3,7 +3,7 @@ import CurrentQuestion from "./CurrentQuestion.jsx"
 import { useEffect } from "react"
 
 let TIMER_ID
-export default function Quiz({onNextQuestion,index, userPoints}){
+export default function Quiz({onNextQuestion,index, userPoints,disableAnswers,onDisable}){
     const quizFinished = QUESTIONS.length === index
 
     // const shuffledAnswers = QUESTIONS[currentQuestionIndex].answers.sort(() => Math.random() - 0.5);
@@ -11,6 +11,7 @@ export default function Quiz({onNextQuestion,index, userPoints}){
     
     function handleIsCorrectFeedback(answer, event){
         const element = event.target
+        onDisable() //This function disable all answers btns
         if (answer.isCorrect){
                 element.classList.add("correct")
             }else{
@@ -19,7 +20,7 @@ export default function Quiz({onNextQuestion,index, userPoints}){
 
         TIMER_ID = setTimeout(() => {
             onNextQuestion(answer)
-        }, 700);        
+        }, 600);        
     }
 
     useEffect(
@@ -38,7 +39,7 @@ export default function Quiz({onNextQuestion,index, userPoints}){
             <h2>{QUESTIONS[index].question}</h2>
         </div>
         <ul className="answers">
-            {QUESTIONS[index].answers.map((answer) => <li key={answer.text} className="answer" ><button onClick={(event) => handleIsCorrectFeedback(answer,event)}>{answer.text}</button></li> )}
+            {QUESTIONS[index].answers.map((answer) => <li key={answer.text} className="answer" ><button onClick={(event) => handleIsCorrectFeedback(answer,event)} disabled={disableAnswers}>{answer.text}</button></li> )}
         </ul>
     </div>
 }
