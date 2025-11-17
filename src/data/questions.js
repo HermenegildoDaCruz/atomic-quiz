@@ -4,12 +4,12 @@ export const QUESTIONS = [
     question: 'Which of the following definitions best describes React.js?',
     answers: [
     {
-        text: 'A library to build user interfaces with help of declarative code.',
-        isCorrect: true,
-    },
-    {
         text: 'A library for managing state in web applications.',
         isCorrect: false,
+    },
+    {
+        text: 'A library to build user interfaces with help of declarative code.',
+        isCorrect: true,
     },
     {
         text: 'A framework to build user interfaces with help of imperative code.',

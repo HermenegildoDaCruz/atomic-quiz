@@ -6,10 +6,10 @@ QUESTIONS.forEach(() => {
     maxPoints += 20    
 })
 
-export default function CurrentQuestion ({userPoints}){
+export default function CurrentQuestion ({questionNumber,userPoints}){
     return <div className="pontuation-box">
                 <div className="current-question-number">
-                    <span>1 of 7</span>
+                    <span>{questionNumber} of {QUESTIONS.length}</span>
                 </div>
                 <div className="score">
                     <span>{userPoints}⭐</span>

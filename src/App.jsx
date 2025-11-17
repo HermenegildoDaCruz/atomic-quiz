@@ -21,8 +21,12 @@ function App() {
           updatedAnswersState.userPoints += 20
         } else {
         // else user lose 10 points and 1 life
-          updatedAnswersState.userPoints -= 10
-          updatedAnswersState.maxErrors -= 1
+          if (updatedAnswersState.userPoints > 0){
+            updatedAnswersState.userPoints -= 10
+          }
+          if (updatedAnswersState.maxErrors > 0){
+            updatedAnswersState.maxErrors -= 1
+          }
         }
 
         return updatedAnswersState
@@ -48,7 +52,7 @@ function App() {
 
   return (
     <>
-      <Header ref = {answersState} remainingLives={answersState.maxErrors}/>
+      <Header ref = {answersState}  remainingLives={answersState.maxErrors}/>
       <Quiz index={currentQuestionIndex} onNextQuestion={handleToggleNextState} userPoints={answersState.userPoints} disableAnswers = {answersState.disableAnswers} onDisable = {handleDisableAllAnswers}/>
       <RemainingTime onNextQuestion={handleToggleNextState} index={currentQuestionIndex}/>
     </>

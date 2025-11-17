@@ -3,10 +3,14 @@ import CurrentQuestion from "./CurrentQuestion.jsx"
 import { useEffect } from "react"
 
 let TIMER_ID
+let shuffledAnswers
 export default function Quiz({onNextQuestion,index, userPoints,disableAnswers,onDisable}){
     const quizFinished = QUESTIONS.length === index
 
-    // const shuffledAnswers = QUESTIONS[currentQuestionIndex].answers.sort(() => Math.random() - 0.5);
+    // Shuffle answers only if quiz not completed
+    if (!quizFinished){
+        shuffledAnswers = QUESTIONS[index].answers
+    }
     // Show if the clicked answer is correct or wrong
     
     function handleIsCorrectFeedback(answer, event){
@@ -25,21 +29,25 @@ export default function Quiz({onNextQuestion,index, userPoints,disableAnswers,on
 
     useEffect(
         () => {
+            if (index > 0){
+                shuffledAnswers.sort(() => Math.random() - 0.5); // Shuffle next question --answers-- when index changes 
+            }
             clearTimeout(TIMER_ID)
         },[index]
     )
 
+
     if (quizFinished){
-        return <div>fineshed</div>
+        return <div>finished</div>
     }
 
     return <div className="quiz">
-        <CurrentQuestion ref={index} userPoints={userPoints}/>
+        <CurrentQuestion ref={index} questionNumber = {index + 1} userPoints={userPoints}/>
         <div className="question">
             <h2>{QUESTIONS[index].question}</h2>
         </div>
         <ul className="answers">
-            {QUESTIONS[index].answers.map((answer) => <li key={answer.text} className="answer" ><button onClick={(event) => handleIsCorrectFeedback(answer,event)} disabled={disableAnswers}>{answer.text}</button></li> )}
+            {shuffledAnswers.map((answer) => <li key={answer.text} className="answer" ><button onClick={(event) => handleIsCorrectFeedback(answer,event)} disabled={disableAnswers}>{answer.text}</button></li> )}
         </ul>
     </div>
 }
