@@ -4,20 +4,37 @@ import RemainingTime from "./components/RemainingTime"
 import { useState } from "react"
 
 function App() {
-  const [userAnswers, setUserAnswers] = useState([])
-  const currentQuestionIndex = userAnswers.length
+  const [answersState, setAnswersState] = useState({
+    userAnswers: [],
+    userPoints: 0,
+    maxErrors: 5, 
+  })
+  const currentQuestionIndex = answersState.userAnswers.length
 
   function handleToggleNextState(answer){
-      setUserAnswers((prevUserAnswers) => {
-        return [...prevUserAnswers, answer]
+
+      setAnswersState((prevAnswersState) => {
+        let updatedAnswersState = {...prevAnswersState, userAnswers: [...prevAnswersState.userAnswers, answer]}
+        
+        // If answer is correct user wins 20 points
+        if (answer.isCorrect){
+          updatedAnswersState.userPoints += 20
+        } else {
+        // else user lose 10 points and 1 life
+          updatedAnswersState.userPoints -= 10
+          updatedAnswersState.maxErrors -= 1
+        }
+
+        return updatedAnswersState
       })
+
   }
 
 
   return (
     <>
-      <Header/>
-      <Quiz index={currentQuestionIndex} onNextQuestion={handleToggleNextState}/>
+      <Header ref = {answersState} remainingLives={answersState.maxErrors}/>
+      <Quiz index={currentQuestionIndex} onNextQuestion={handleToggleNextState} userPoints={answersState.userPoints}/>
       <RemainingTime onNextQuestion={handleToggleNextState} index={currentQuestionIndex}/>
     </>
   )

@@ -1,7 +1,6 @@
 export const QUESTIONS = [
   {
     id: 'q1',
-    points: 10,
     question: 'Which of the following definitions best describes React.js?',
     answers: [
     {
@@ -25,7 +24,6 @@ export const QUESTIONS = [
   {
     id: 'q2',
     question: 'What purpose do React hooks serve?',
-    points: 15,
     answers: [
         {
         text: 'Enabling the use of state and other React features in functional components.',
@@ -47,7 +45,6 @@ export const QUESTIONS = [
   },
   {
     id: 'q3',
-    points: 10,
     question: 'Can you identify what JSX is?',
     answers: [
         {
@@ -70,7 +67,6 @@ export const QUESTIONS = [
   },
   {
     id: 'q4',
-    points: 10,
     question: 'What is the most common way to create a component in React?',
     answers: [
         {
@@ -94,7 +90,6 @@ export const QUESTIONS = [
   {
     id: 'q5',
     question: 'What does the term "React state" imply?',
-    points: 15,
     answers: [
         {
         text: 'An object in a component that holds values and may cause the component to render on change.',
@@ -116,7 +111,6 @@ export const QUESTIONS = [
   },
   {
     id: 'q6',
-    points: 15,
     question: 'How do you typically render list content in React apps?',
     answers: [
         {
@@ -139,7 +133,6 @@ export const QUESTIONS = [
   },
   {
     id: 'q7',
-    points: 10,
     question: 'Which approach can NOT be used to render content conditionally?',
     answers: [
         {

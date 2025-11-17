@@ -1,9 +1,9 @@
 import {QUESTIONS} from "../data/questions.js"
 import CurrentQuestion from "./CurrentQuestion.jsx"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 let TIMER_ID
-export default function Quiz({onNextQuestion,index}){
+export default function Quiz({onNextQuestion,index, userPoints}){
     const quizFinished = QUESTIONS.length === index
 
     // const shuffledAnswers = QUESTIONS[currentQuestionIndex].answers.sort(() => Math.random() - 0.5);
@@ -33,7 +33,7 @@ export default function Quiz({onNextQuestion,index}){
     }
 
     return <div className="quiz">
-        <CurrentQuestion/>
+        <CurrentQuestion ref={index} userPoints={userPoints}/>
         <div className="question">
             <h2>{QUESTIONS[index].question}</h2>
         </div>
