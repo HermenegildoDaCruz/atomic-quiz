@@ -1,73 +1,93 @@
 import Header from "./components/Header"
 import Quiz from "./components/Quiz"
-import RemainingTime from "./components/RemainingTime"
+import Time from "./components/Time"
 import { useEffect, useState } from "react"
+import { QUESTIONS } from "./data/questions"
 
-const DEFAULT_ANSWER_STATE = {
+const DEFAULT_QUIZ_STATE = {
     userAnswers: [],
     userPoints: 0,
     maxErrors: 5, 
     disableAnswers: false,
+    duration:0
 }
 
+let TIMER
 function App() {
-  const [answersState, setAnswersState] = useState(DEFAULT_ANSWER_STATE)
-  const currentQuestionIndex = answersState.userAnswers.length
+  const [quizState, setQuizState] = useState(DEFAULT_QUIZ_STATE)
+  const currentQuestionIndex = quizState.userAnswers.length
+  const quizFinished = QUESTIONS.length === currentQuestionIndex
 
   function handleToggleNextState(answer){
-      setAnswersState((prevAnswersState) => {
-        let updatedAnswersState = {...prevAnswersState, userAnswers: [...prevAnswersState.userAnswers, answer]}
+      setQuizState((prevQuizState) => {
+        let updatedQuizState = {...prevQuizState, userAnswers: [...prevQuizState.userAnswers, answer]}
         
         // If answer is correct user wins 20 points
         if (answer.isCorrect){
-          updatedAnswersState.userPoints += 100
+          updatedQuizState.userPoints += 100
         } else {
         // else user lose 10 points and 1 life
-          if (updatedAnswersState.userPoints > 0){
-            updatedAnswersState.userPoints -= 50
+          if (updatedQuizState.userPoints > 0){
+            updatedQuizState.userPoints -= 50
           }
-          if (updatedAnswersState.maxErrors > 0){
-            updatedAnswersState.maxErrors -= 1
+          if (updatedQuizState.maxErrors > 0){
+            updatedQuizState.maxErrors -= 1
           }
         }
 
-        return updatedAnswersState
+        return updatedQuizState
       })
   }
 
   function handleDisableAllAnswers(){
-    setAnswersState(prevAnswersState => {
-      const updatedAnswersState = {...prevAnswersState,disableAnswers: !prevAnswersState.disableAnswers}
-      return updatedAnswersState
+    setQuizState(prevQuizState => {
+      const updatedQuizState = {...prevQuizState,disableAnswers: !prevQuizState.disableAnswers}
+      return updatedQuizState
     })
   }
 
   function handleRestartQuiz(){
-    setAnswersState(DEFAULT_ANSWER_STATE)
+    setQuizState(DEFAULT_QUIZ_STATE)
   }
-
+  // This effect active all buttons after user choose a answer
   useEffect(()=>{
-    if (answersState.disableAnswers){
-      setAnswersState(prevAnswersState => {
-        const updatedAnswersState = {...prevAnswersState, disableAnswers: !prevAnswersState.disableAnswers}
-        return updatedAnswersState
+    if (quizState.disableAnswers){
+      setQuizState(prevQuizState => {
+        const updatedQuizState = {...prevQuizState, disableAnswers: !prevQuizState.disableAnswers}
+        return updatedQuizState
       })
     }
   },[currentQuestionIndex])
 
-  if (answersState.maxErrors === 0){
+  // This effect start a timer to manage duration of quiz
+  useEffect(()=>{
+      if (!quizFinished){
+        TIMER = setTimeout(() => {
+      setQuizState(prevQuizState => {
+        const updatedQuizState = {...prevQuizState, duration: prevQuizState.duration++}
+        return updatedQuizState
+      })
+    }, 1000);
+      }
+    return () => {
+      clearTimeout(TIMER)
+    }    
+  },[quizState])
+
+  if (quizState.maxErrors === 0){
        return <div className="restart-box">
               <h2 className="restart-msg">You lost all your lives💔, restart the quiz.</h2>
               <button className="restart-btn" onClick={handleRestartQuiz}>Restart</button>
           </div>
-    }
-  
+  }
 
+  
   return (
     <>
-      <Header ref = {answersState}  remainingLives={answersState.maxErrors}/>
-      <Quiz userAnswers={answersState.userAnswers} index={currentQuestionIndex} onNextQuestion={handleToggleNextState} userPoints={answersState.userPoints} disableAnswers = {answersState.disableAnswers} onDisable = {handleDisableAllAnswers} onRestartQuiz = {handleRestartQuiz}/>
-      <RemainingTime onNextQuestion={handleToggleNextState} index={currentQuestionIndex}/>
+      <Header ref = {quizState}  remainingLives={quizState.maxErrors}/>
+      <Quiz userAnswers={quizState.userAnswers} index={currentQuestionIndex} onNextQuestion={handleToggleNextState} userPoints={quizState.userPoints} disableAnswers = {quizState.disableAnswers} onDisable = {handleDisableAllAnswers} onRestartQuiz = {handleRestartQuiz} quizDuration = {quizState.duration}/>
+      {!quizFinished && <Time duration={quizState.duration}/>
+}
     </>
   )
 }

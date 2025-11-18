@@ -102,18 +102,10 @@ button{
     background-color:  #c278091c;
 }
 
-.remaining-time-box{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.4rem;
-}
-.remaining-time{
-    font-size: 2.4rem;
-}
-
-.next-btn:hover{
-    background-color: #14225c;
+.duration span{
+    border: 2px solid #ffffff2c;
+    padding: .8rem  1.6rem;
+    border-radius: 14px;
 }
 
 .restart-msg{
