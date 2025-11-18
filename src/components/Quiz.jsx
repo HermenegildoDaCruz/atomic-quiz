@@ -1,10 +1,11 @@
 import {QUESTIONS} from "../data/questions.js"
 import CurrentQuestion from "./CurrentQuestion.jsx"
+import Score from "./Score.jsx"
 import { useEffect } from "react"
 
 let TIMER_ID
 let shuffledAnswers
-export default function Quiz({onNextQuestion,index, userPoints,disableAnswers,onDisable}){
+export default function Quiz({userAnswers,onNextQuestion,index, userPoints,disableAnswers,onDisable,onRestartQuiz}){
     const quizFinished = QUESTIONS.length === index
 
     // Shuffle answers only if quiz not completed
@@ -29,7 +30,7 @@ export default function Quiz({onNextQuestion,index, userPoints,disableAnswers,on
 
     useEffect(
         () => {
-            if (index > 0){
+            if (index > 0 && index < QUESTIONS.length){
                 shuffledAnswers.sort(() => Math.random() - 0.5); // Shuffle next question --answers-- when index changes 
             }
             clearTimeout(TIMER_ID)
@@ -38,10 +39,10 @@ export default function Quiz({onNextQuestion,index, userPoints,disableAnswers,on
 
 
     if (quizFinished){
-        return <div>finished</div>
+        return <Score userAnswers={userAnswers} userPoints={userPoints} speed={"2:000"} onRestartQuiz = {onRestartQuiz}/>
     }
 
-    return <div className="quiz">
+    return <div className="container">
         <CurrentQuestion ref={index} questionNumber = {index + 1} userPoints={userPoints}/>
         <div className="question">
             <h2>{QUESTIONS[index].question}</h2>

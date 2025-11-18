@@ -1,12 +1,7 @@
 import { useEffect } from "react"
 
 export default function RemainingTime({}){
-
-    // useEffect(() => {
-    //     onNextQuestion()
-    // },[index])
-
-    return <div className="remaining-time-box">
+    return <div className="container">
             <div className="remaining-time">
                 <span>30s</span>
             </div>

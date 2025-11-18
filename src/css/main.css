@@ -42,10 +42,12 @@ button{
 .header .quiz-lifes{
     font-size: 2rem;
 }
-.quiz, .remaining-time-box{
+
+.container{
     margin: 4rem auto;
     max-width: 80%;
 }
+
 .pontuation-box{
     display: flex;
     justify-content: space-between;
@@ -110,14 +112,71 @@ button{
     font-size: 2.4rem;
 }
 
-.next-btn{
-    background-color: #233783;
-    padding: 1.4rem 2.4rem;
-    border: 12px;
-    transition: all 500ms;
-}
 .next-btn:hover{
     background-color: #14225c;
+}
+
+.restart-msg{
+    text-align: center;
+    font-size: 2.6rem;
+}
+
+.restart-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4.4rem;
+}
+
+.restart-btn{
+    background-color: #233783;
+    padding: .8rem 2.2rem;
+    margin-top: 2.4rem;
+    transition: all 400ms;
+}
+.restart-btn:hover{
+    background-color: #14225c;
+}
+
+.stats{
+    display: flex;
+    justify-content: space-around;
+    gap: 1.2rem;
+}
+
+.stats .stat{
+    background-color: rgba(35, 54, 131, 0.123);
+    padding: 2.4rem 4.4rem;
+    border-radius: 14px;
+}
+.stats .stat>div{
+    background-color: rgba(35, 54, 131, 0.123);
+    padding: 1.8rem;
+    border-radius: 14px;
+}
+.stats .stat>div>strong{
+    font-size: 2.2rem;
+    color: rgba(255, 255, 255, 0.884);
+}
+.details-box{
+    margin-top: 4.4rem;
+}
+.details-header{
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+.details{
+    margin-top: 2.4rem;
+}
+.details-btn{
+    background-color: transparent;
+}
+.details li{
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    margin: 1.8rem;
 }
 .correct{
     border: 2px solid #5ad15a9c; 
@@ -133,4 +192,12 @@ button{
     }100%{
         transform: rotate(360deg);
     }
+}
+
+/* HELPER CLASSES */
+.green {
+    color: #5ad15a9c;
+}
+.red {
+    color: #be3333e3;
 }
