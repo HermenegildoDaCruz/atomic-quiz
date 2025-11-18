@@ -165,6 +165,7 @@ button{
     display: flex;
     align-items: center;
     gap: 1.2rem;
+    font-size: 2.2rem;
 }
 .details{
     margin-top: 2.4rem;
@@ -200,4 +201,38 @@ button{
 }
 .red {
     color: #be3333e3;
+}
+
+@media (max-width:62em) {
+    html{
+        font-size: 63.2%;
+    }
+}
+@media (max-width:60em) {
+    html{
+        font-size: 45%;
+    }
+}
+@media (max-width:46em) {
+    html{
+        font-size: 40%;
+    }
+    
+}
+@media (max-width:39em) {
+.container{
+    max-width: 100%;
+}
+}
+@media (max-width:30em) {
+    html{
+        font-size: 45%;
+    }
+    .stats{
+            flex-direction: column;
+        }
+
+    .stats .stat{
+        text-align: center;
+    }
 }
