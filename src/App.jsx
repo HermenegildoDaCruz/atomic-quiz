@@ -59,7 +59,7 @@ function App() {
     }
   },[currentQuestionIndex])
 
-  // This effect start a timer to manage duration of quiz
+  // This effect start a timer to manage duration of quiz.
   useEffect(()=>{
       if (!quizFinished){
         TIMER = setTimeout(() => {
