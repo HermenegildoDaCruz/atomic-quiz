@@ -1,10 +1,13 @@
 import Header from "./components/Header"
+import StartQuiz from "./components/StartQuiz"
 import Quiz from "./components/Quiz"
 import Time from "./components/Time"
+import RestartBox from './components/RestartBox'
 import { useEffect, useState } from "react"
 import { QUESTIONS } from "./data/questions"
 
 const DEFAULT_QUIZ_STATE = {
+    start: false,
     userAnswers: [],
     userPoints: 0,
     maxErrors: 5, 
@@ -16,9 +19,11 @@ function App() {
   const currentQuestionIndex = quizState.userAnswers.length
   const quizFinished = QUESTIONS.length === currentQuestionIndex
 
+  // Pass to next question but before check if user answer was correct or wrong and apply some logics according this conditions
   function handleToggleNextState(answer){
       setQuizState((prevQuizState) => {
         let updatedQuizState = {...prevQuizState, userAnswers: [...prevQuizState.userAnswers, answer]}
+
         // If answer is correct user wins 20 points
         if (answer.isCorrect){
           updatedQuizState.userPoints += 100
@@ -35,6 +40,7 @@ function App() {
       })
   }
 
+  // Disable all answers buttons
   function handleDisableAllAnswers(){
     setQuizState(prevQuizState => {
       const updatedQuizState = {...prevQuizState,disableAnswers: !prevQuizState.disableAnswers}
@@ -42,8 +48,18 @@ function App() {
     })
   }
 
+  // Start quiz
+  function handleStartQuiz(){
+    setQuizState(prevQuizState => {
+      return {...prevQuizState, start: !prevQuizState.start}
+    })
+  }
+
+  // Reset and restart quiz
   function handleRestartQuiz(){
-    setQuizState(DEFAULT_QUIZ_STATE)
+    setQuizState(()=>{
+     return {...DEFAULT_QUIZ_STATE, start: true} 
+    })
   }
 
   // This effect active all buttons after user choose a answer
@@ -56,14 +72,14 @@ function App() {
   },[currentQuestionIndex])
    
 
-  if (quizState.maxErrors === 0){
-       return <div className="restart-box">
-              <h2 className="restart-msg">You lost all your lives💔, restart the quiz.</h2>
-              <button className="restart-btn" onClick={handleRestartQuiz}>Restart</button>
-          </div>
+  if (!quizState.start){
+    return <StartQuiz onStartQuiz={handleStartQuiz}/>
   }
 
-  
+  if (quizState.maxErrors === 0){
+      return <RestartBox msg={"You lost all your lives💔, restart the quiz."} onRestartQuiz={handleRestartQuiz}/>
+  }
+
   return (
     <>
       <Header ref = {quizState}  remainingLives={quizState.maxErrors}/>

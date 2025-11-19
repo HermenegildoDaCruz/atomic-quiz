@@ -17,17 +17,21 @@ export default function Quiz({userAnswers,onNextQuestion,index, userPoints,disab
     function handleIsCorrectFeedback(answer, event){
         const element = event.target
         onDisable() //This function disable all answers btns
+
+        // Apply style conditionally according user answer 
         if (answer.isCorrect){
                 element.classList.add("correct")
             }else{
                 element.classList.add("wrong")
             } 
-
+        
+        // After 600ms jump to the next question
         TIMER_ID = setTimeout(() => {
             onNextQuestion(answer)
         }, 600);        
     }
 
+    // Shuffle answers after choosing an answer (when index of question changes)
     useEffect(
         () => {
             if (index > 0 && index < QUESTIONS.length){
@@ -37,6 +41,7 @@ export default function Quiz({userAnswers,onNextQuestion,index, userPoints,disab
         },[index]
     )
 
+    // Show the final score when all quizzes is completed
     if (quizFinished){
         return <Score userAnswers={userAnswers} userPoints={userPoints} onRestartQuiz = {onRestartQuiz}/>
     }

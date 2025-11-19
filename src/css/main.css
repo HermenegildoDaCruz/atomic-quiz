@@ -26,6 +26,15 @@ button{
     border-radius: 14px;
     cursor: pointer;
 }
+.btn{
+    background-color: #233783;
+    padding: .8rem 2.2rem;
+    margin-top: 2.4rem;
+    transition: all 400ms;
+}
+.btn:hover{
+    background-color: #14225c;
+}
 .header .logo-box{
     display: flex;
     align-items: center;
@@ -36,7 +45,7 @@ button{
     align-items: center;
     justify-content: space-between;
 }
-.header .logo{
+.logo{
     animation: InfiniteRotation 3.5s infinite;
 }
 .header .quiz-lifes{
@@ -108,26 +117,50 @@ button{
     border-radius: 14px;
 }
 
-.restart-msg{
+.start-box{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4.4rem .8rem;
+    background-color: rgba(35, 54, 131, 0.1);
     text-align: center;
-    font-size: 2.6rem;
+    border-radius: 14px;
+    border: 3px solid #7b87b549;
+    box-shadow: 1px 1px 1px 12px #7b87b549;
 }
-
+.start-box .logo{
+    margin-bottom: 2rem;
+}
+.start-box .btn{
+    margin-top: 5.2rem;
+    padding: 1.6rem 5.2rem;
+}
+.app-name{
+    color: #7b87b5;
+}
+.app-creater{
+    position: fixed;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    color: #a7afcd;
+}
 .restart-box{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 4.4rem;
 }
-
-.restart-btn{
-    background-color: #233783;
-    padding: .8rem 2.2rem;
-    margin-top: 2.4rem;
-    transition: all 400ms;
-}
-.restart-btn:hover{
-    background-color: #14225c;
+.restart-msg{
+    text-align: center;
+    font-size: 2.6rem;
 }
 
 .stats{
@@ -171,6 +204,7 @@ button{
     gap: .8rem;
     margin: 1.8rem;
 }
+.copyright
 .correct{
     border: 2px solid #5ad15a9c; 
 }

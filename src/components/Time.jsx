@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-
-// This function converts time in segunds to minutes
-export function convertTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const rest = seconds % 60;
-  return `${minutes}:${rest}`;
-}
+import { convertTime } from "../utils/functions";
 
 let timer
 export let convertedDuration
@@ -29,7 +23,6 @@ export default function Time({quizFinished}){
     }else{
         convertedDuration = duration + "s "
     }
-    
 
     return <div className="container">
             <div className="duration">
