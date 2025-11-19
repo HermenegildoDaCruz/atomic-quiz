@@ -5,7 +5,7 @@ import { useEffect } from "react"
 
 let TIMER_ID
 let shuffledAnswers
-export default function Quiz({userAnswers,onNextQuestion,index, userPoints,disableAnswers,onDisable,onRestartQuiz,quizDuration}){
+export default function Quiz({userAnswers,onNextQuestion,index, userPoints,disableAnswers,onDisable,onRestartQuiz}){
     const quizFinished = QUESTIONS.length === index
 
     // Shuffle answers only if quiz not completed
@@ -37,9 +37,8 @@ export default function Quiz({userAnswers,onNextQuestion,index, userPoints,disab
         },[index]
     )
 
-
     if (quizFinished){
-        return <Score userAnswers={userAnswers} userPoints={userPoints} quizDuration={quizDuration} onRestartQuiz = {onRestartQuiz}/>
+        return <Score userAnswers={userAnswers} userPoints={userPoints} onRestartQuiz = {onRestartQuiz}/>
     }
 
     return <div className="container">

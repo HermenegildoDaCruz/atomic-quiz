@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { QUESTIONS } from "../data/questions"
-import { convertTime } from "./Time"
+import { convertedDuration } from "./Time"
 
 function getResultMessage(share){
     if(share < 50){
@@ -22,18 +22,12 @@ let correctAnswers
 let correctAnswersShare
 let resultMsg
 
-export default function Score({userAnswers,userPoints, quizDuration,onRestartQuiz}){
+export default function Score({userAnswers,userPoints,onRestartQuiz}){
     const [showDetails, setShowDetails] = useState(false)
     correctAnswers = userAnswers.filter(answer => answer.isCorrect === true)
     correctAnswersShare = Math.round((correctAnswers.length / QUESTIONS.length) * 100)
     resultMsg = getResultMessage(correctAnswersShare)
     
-    if (quizDuration >= 60){
-        quizDuration = convertTime(quizDuration)
-    }else{
-        quizDuration += "s"
-    }
-
     function handleShowDetails(){
         setShowDetails(prevShowDetails => !prevShowDetails)
     }
@@ -51,7 +45,7 @@ export default function Score({userAnswers,userPoints, quizDuration,onRestartQui
                     <div><strong>{userPoints}</strong> XP</div>
                 </div>
                 <div className="stat">
-                    <div><strong>{quizDuration}</strong> speed</div>
+                    <div><strong>{convertedDuration}</strong> speed</div>
                 </div>
             </div>
             <div className="details-box">
