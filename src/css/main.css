@@ -204,11 +204,9 @@ button{
     gap: .8rem;
     margin: 1.8rem;
 }
-.copyright
 .correct{
     border: 2px solid #5ad15a9c; 
 }
-
 .wrong{
     border: 2px solid #be3333e3;
 }
