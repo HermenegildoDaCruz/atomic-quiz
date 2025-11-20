@@ -56,13 +56,11 @@ button{
     margin: 4rem auto;
     max-width: 80%;
 }
-
 .pontuation-box{
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.4rem;
 }
-
 .current-question-number{
     border: 2px solid rgba(241, 243, 245, 0.1);
     border-radius: 12px;
@@ -70,7 +68,21 @@ button{
     align-items: center;
     padding: .8rem;
 }
-
+.progress-bar{
+    appearance: inherit;
+    border-radius: 100px;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 2.4rem;
+}
+.progress-bar::-webkit-progress-bar{
+    background-color: #2336831e;
+}
+.progress-bar::-webkit-progress-value{
+    background-color: #233783;
+    border-radius: 100px;
+    transition: all 600ms ease-in;
+}
 .score{
     border: 2px solid rgba(241, 243, 245, 0.1);
     border-radius: 12px;

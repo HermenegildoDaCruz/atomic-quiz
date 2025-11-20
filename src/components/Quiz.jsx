@@ -45,6 +45,7 @@ export default function Quiz({userAnswers,onNextQuestion,index, userPoints,disab
     }
 
     return <div className="container">
+        <progress className="progress-bar" value={index} max={QUESTIONS.length}></progress>
         <CurrentQuestion ref={index} questionNumber = {index + 1} userPoints={userPoints}/>
         <div className="question">
             <h2>{QUESTIONS[index].question}</h2>
